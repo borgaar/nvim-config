@@ -46,7 +46,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Open terminal and navigation out of terminal
-vim.keymap.set("n", "<leader>t", ":below 15split | terminal<CR>i", { desc = "Open terminal below" })
+vim.keymap.set("n", "<leader>t", ":botright vnew +terminal<CR>", { desc = "Open terminal on the right" })
 vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
 vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = "Move to below window" })
 vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = "Move to above window" })

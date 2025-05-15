@@ -10,4 +10,9 @@ require("nvim-tree").setup {
     },
     exclude = false,
   },
+  actions = {
+    open_file = {
+      resize_window = false,
+    },
+  },
 }
