@@ -32,8 +32,8 @@ vim.opt.hlsearch = false;
 vim.opt.termguicolors = true;
 
 -- scrolling
-vim.opt.scrolloff = 8;
-vim.opt.sidescrolloff = 8;
+vim.opt.scrolloff = 4;
+vim.opt.sidescrolloff = 4;
 
 vim.opt.signcolumn = "yes";
 vim.opt.wrap = false;

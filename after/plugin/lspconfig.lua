@@ -32,7 +32,7 @@ local default_on_attach = function(client, bufnr)
 end
 
 local servers = { "lua_ls", "cssls", "html", "jdtls", "kotlin_language_server", "tailwindcss",
-  "rust_analyzer" }
+  "rust_analyzer", "gopls" }
 
 -- Iterate over all servers and apply default_on_attach and capabilities
 for _, server in ipairs(servers) do
