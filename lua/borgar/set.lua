@@ -20,7 +20,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir";
 vim.opt.undofile = true;
 
 -- System clipboard
-vim.opt.clipboard = "unnamedplus";
+-- vim.opt.clipboard = "unnamedplus";
 
 -- search settings
 vim.opt.ignorecase = true;
