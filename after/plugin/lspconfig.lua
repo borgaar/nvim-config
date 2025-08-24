@@ -31,8 +31,7 @@ local default_on_attach = function(client, bufnr)
   vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 
-local servers = { "lua_ls", "cssls", "html", "jdtls", "kotlin_language_server", "tailwindcss",
-  "rust_analyzer", "gopls", "ruff" }
+local servers = { "lua_ls", "cssls", "html", "ts_ls", "jdtls", "eslint", "html", "kotlin_language_server", "tailwindcss", "rust_analyzer", "gopls", "ruff" }
 
 -- Iterate over all servers and apply default_on_attach and capabilities
 for _, server in ipairs(servers) do
