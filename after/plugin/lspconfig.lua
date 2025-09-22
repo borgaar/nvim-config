@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local default_on_attach = function(client, bufnr)
@@ -31,18 +30,32 @@ local default_on_attach = function(client, bufnr)
   vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
 end
 
-local servers = { "lua_ls", "cssls", "html", "ts_ls", "jdtls", "eslint", "html", "kotlin_language_server", "tailwindcss", "rust_analyzer", "gopls", "ruff" }
+local servers = {
+  "lua_ls",
+  "cssls",
+  "html",
+  "jdtls",
+  "kotlin_language_server",
+  "tailwindcss",
+  "rust_analyzer",
+  "gopls",
+  "ruff",
+  "lemminx",
+}
 
 -- Iterate over all servers and apply default_on_attach and capabilities
 for _, server in ipairs(servers) do
-  lspconfig[server].setup({
+  vim.lsp.config(server, {
     capabilities = capabilities,
     on_attach = default_on_attach,
   })
+
+  -- Enable filetype-based activation
+  vim.lsp.enable(server)
 end
 
 -- Configure pyright for strong typing
-lspconfig.pyright.setup({
+vim.lsp.config("pyright", {
   capabilities = capabilities,
   on_attach = default_on_attach,
   settings = {
@@ -60,7 +73,7 @@ lspconfig.pyright.setup({
 local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
 local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
 
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   init_options = {
     plugins = {
@@ -77,12 +90,10 @@ lspconfig.ts_ls.setup({
   },
 })
 
-lspconfig.volar.setup {}
-
-lspconfig.eslint.setup({
+vim.lsp.config("eslint", {
   capabilities = capabilities,
   on_attach = default_on_attach,
-  filtypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
 })
 
 -- Flutter & Dart
@@ -92,25 +103,26 @@ require("flutter-tools").setup {
   },
   lsp = {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      default_on_attach(client, bufnr)
-
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.code_action({
-            apply = true,
-            filter = function(command)
-              --print(command.title)
-              return command.title == "Fix All"
-            end
-          })
-
-          vim.wait(300)
-
-          vim.lsp.buf.format({ bufnr = bufnr })
-        end,
-      })
-    end,
+    on_attach = default_on_attach,
+    -- on_attach = function(client, bufnr)
+    --   default_on_attach(client, bufnr)
+    --
+    --   vim.api.nvim_create_autocmd("BufWritePre", {
+    --     buffer = bufnr,
+    --     callback = function()
+    --       vim.lsp.buf.code_action({
+    --         apply = true,
+    --         filter = function(command)
+    --           --print(command.title)
+    --           return command.title == "Fix All"
+    --         end
+    --       })
+    --
+    --       vim.wait(300)
+    --
+    --       vim.lsp.buf.format({ bufnr = bufnr })
+    --     end,
+    --   })
+    -- end,
   }
 }
