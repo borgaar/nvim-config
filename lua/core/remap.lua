@@ -8,6 +8,11 @@ vim.keymap.set("n", "<leader>cf", function()
   api.tree.collapse_all()
 end, { desc = "Collapse all except current file path" })
 
+-- LSP
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Open documentation' })
+vim.keymap.set('n', 'E', vim.diagnostic.open_float, { desc = 'Open diagnostics' })
+
 -- Find files
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })

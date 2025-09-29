@@ -8,7 +8,7 @@ require("conform").setup({
   },
   format_on_save = function()
     -- run :EslintFixAll if eslint is available
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
 
     for _, client in ipairs(clients) do
       if client.name == "eslint" then

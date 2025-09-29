@@ -9,6 +9,6 @@ require("session_manager").setup {
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = "SessionLoadPost",
   callback = function()
-    require('nvim-tree.api').tree.toggle(false, true)
+   require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
   end,
 })

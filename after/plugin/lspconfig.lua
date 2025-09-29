@@ -1,63 +1,47 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local default_on_attach = function(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
+vim.lsp.config("lua_ls", {})
+vim.lsp.enable("lua_ls")
 
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+vim.lsp.config("cssls", {})
+vim.lsp.enable("cssls")
 
-  vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+vim.lsp.config("html", {})
+vim.lsp.enable("html")
 
-  vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+vim.lsp.config("jdtls", {})
+vim.lsp.enable("jdtls")
 
-  vim.keymap.set("n", "K", function()
-    vim.lsp.buf.hover({
-      focusable = true,
-      close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
-      border = "rounded",
-      source = true,
-    })
-  end, opts)
+vim.lsp.config("kotlin_language_server", {})
+vim.lsp.enable("kotlin_language_server")
 
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "E", vim.diagnostic.open_float, opts)
+vim.lsp.config("tailwindcss", {})
+vim.lsp.enable("tailwindcss")
 
-  vim.keymap.set("n", "<leader>rn", function()
-    local clients = vim.lsp.get_active_clients({ filter = { bufnr = bufnr } })
+vim.lsp.config("gopls", {})
+vim.lsp.enable("gopls")
 
-    vim.lsp.buf.rename()
-  end, opts)
+vim.lsp.config("ruff", {})
+vim.lsp.enable("ruff")
 
-  vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, opts)
-end
+vim.lsp.config("lemminx", {})
+vim.lsp.enable("lemminx")
 
-local servers = {
-  "lua_ls",
-  "cssls",
-  "html",
-  "jdtls",
-  "kotlin_language_server",
-  "tailwindcss",
-  "rust_analyzer",
-  "gopls",
-  "ruff",
-  "lemminx",
-}
+vim.lsp.config("asm_lsp", {})
+vim.lsp.enable("asm_lsp")
 
--- Iterate over all servers and apply default_on_attach and capabilities
-for _, server in ipairs(servers) do
-  vim.lsp.config(server, {
-    capabilities = capabilities,
-    on_attach = default_on_attach,
-  })
+vim.lsp.config("rust_analyzer", {})
+vim.lsp.enable("rust_analyzer")
 
-  -- Enable filetype-based activation
-  vim.lsp.enable(server)
-end
+vim.lsp.config("eslint", {
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+})
+vim.lsp.enable("eslint")
+
+vim.lsp.config("clangd", {})
+vim.lsp.enable("clangd")
 
 -- Configure pyright for strong typing
 vim.lsp.config("pyright", {
-  capabilities = capabilities,
-  on_attach = default_on_attach,
   settings = {
     python = {
       analysis = {
@@ -68,6 +52,7 @@ vim.lsp.config("pyright", {
     },
   },
 })
+vim.lsp.enable("pyright")
 
 -- TypeScript and Vue
 local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
@@ -89,40 +74,10 @@ vim.lsp.config("ts_ls", {
     }
   },
 })
+vim.lsp.enable("ts_ls")
 
-vim.lsp.config("eslint", {
-  capabilities = capabilities,
-  on_attach = default_on_attach,
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-})
-
--- Flutter & Dart
 require("flutter-tools").setup {
   widget_guides = {
     enabled = true,
   },
-  lsp = {
-    capabilities = capabilities,
-    on_attach = default_on_attach,
-    -- on_attach = function(client, bufnr)
-    --   default_on_attach(client, bufnr)
-    --
-    --   vim.api.nvim_create_autocmd("BufWritePre", {
-    --     buffer = bufnr,
-    --     callback = function()
-    --       vim.lsp.buf.code_action({
-    --         apply = true,
-    --         filter = function(command)
-    --           --print(command.title)
-    --           return command.title == "Fix All"
-    --         end
-    --       })
-    --
-    --       vim.wait(300)
-    --
-    --       vim.lsp.buf.format({ bufnr = bufnr })
-    --     end,
-    --   })
-    -- end,
-  }
 }
