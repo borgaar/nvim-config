@@ -1,5 +1,12 @@
-
-vim.lsp.config("lua_ls", {})
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  }
+})
 vim.lsp.enable("lua_ls")
 
 vim.lsp.config("cssls", {})
@@ -32,15 +39,9 @@ vim.lsp.enable("asm_lsp")
 vim.lsp.config("rust_analyzer", {})
 vim.lsp.enable("rust_analyzer")
 
-vim.lsp.config("eslint", {
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-})
-vim.lsp.enable("eslint")
-
 vim.lsp.config("clangd", {})
 vim.lsp.enable("clangd")
 
--- Configure pyright for strong typing
 vim.lsp.config("pyright", {
   settings = {
     python = {
@@ -56,25 +57,28 @@ vim.lsp.enable("pyright")
 
 -- TypeScript and Vue
 local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
-local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+local lua_ls_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
 
 vim.lsp.config("ts_ls", {
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = volar_path,
-        languages = { "vue" },
-      },
-    },
     preferences = {
       importModuleSpecifierPreference = "non-relative",
       importModuleSpecifierEnding = "minimal"
-    }
+    },
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = lua_ls_path,
+        languages = { "vue" },
+      },
+    },
   },
 })
 vim.lsp.enable("ts_ls")
+
+vim.lsp.config("vue_ls", {})
+vim.lsp.enable("vue_ls")
 
 require("flutter-tools").setup {
   widget_guides = {

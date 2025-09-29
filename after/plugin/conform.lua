@@ -1,24 +1,20 @@
 require("conform").setup({
   formatters_by_ft = {
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    javascriptreact = { "prettier" },
-    typescriptreact = { "prettier" },
-    vue = { "prettier" },
+    javascript = { "eslint_d", "prettier" },
+    typescript = { "eslint_d", "prettier" },
+    javascriptreact = { "eslint_d", "prettier" },
+    typescriptreact = { "eslint_d", "prettier" },
+    vue = { "eslint_d", "prettier" },
+    json = { "prettier" },
+    markdown = { "prettier" },
+    css = { "prettier" },
+    scss = { "prettier" },
+    html = { "prettier" },
+    yaml = { "prettier" },
+    yml = { "prettier" },
   },
-  format_on_save = function()
-    -- run :EslintFixAll if eslint is available
-    local clients = vim.lsp.get_clients()
-
-    for _, client in ipairs(clients) do
-      if client.name == "eslint" then
-        vim.cmd.EslintFixAll();
-      end
-    end
-
-    require("conform").format()
-  end,
-  default_format_opts = {
-    lsp_format = "fallback"
-  }
+  format_on_save = {
+    lsp_fallback = true,
+    timeout_ms = 1000,
+  },
 })
