@@ -42,11 +42,14 @@ vim.lsp.enable("rust_analyzer")
 vim.lsp.config("clangd", {})
 vim.lsp.enable("clangd")
 
+vim.lsp.config("buf", {})
+vim.lsp.enable("buf")
+
 vim.lsp.config("pyright", {
   settings = {
     python = {
       analysis = {
-        typeCheckingMode = "strict",
+        -- typeCheckingMode = "strict",
         autoImportCompletions = true,
         useLibraryCodeForTypes = true,
       },
