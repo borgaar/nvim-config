@@ -1,4 +1,5 @@
-require("conform").setup({
+conform = require("conform")
+conform.setup({
   formatters_by_ft = {
     javascript = { "eslint_d", "prettier" },
     typescript = { "eslint_d", "prettier" },
@@ -12,9 +13,17 @@ require("conform").setup({
     html = { "prettier" },
     yaml = { "prettier" },
     yml = { "prettier" },
+    rust = { "jonathans_crazy_aah_formatter", lsp_format = "never" }
   },
-  format_on_save = {
-    lsp_fallback = true,
-    timeout_ms = 1000,
-  },
+  formatters = {
+    jonathans_crazy_aah_formatter = {
+      command = "./fmt.sh",
+    }
+  }
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    --conform.format()
+  end,
 })

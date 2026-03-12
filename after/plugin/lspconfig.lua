@@ -39,6 +39,9 @@ vim.lsp.enable("asm_lsp")
 vim.lsp.config("rust_analyzer", {})
 vim.lsp.enable("rust_analyzer")
 
+vim.lsp.config("lean-language-server", {})
+vim.lsp.enable("lean-language-server")
+
 vim.lsp.config("clangd", {})
 vim.lsp.enable("clangd")
 

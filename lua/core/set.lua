@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Autoread
+vim.o.autoread = true;
+
 -- line numbers
 vim.opt.nu = true;
 vim.opt.relativenumber = true;
