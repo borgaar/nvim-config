@@ -10,6 +10,7 @@ end, { desc = "Collapse all except current file path" })
 
 -- LSP
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Go to references' })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Open documentation' })
 vim.keymap.set('n', 'E', vim.diagnostic.open_float, { desc = 'Open diagnostics' })
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
