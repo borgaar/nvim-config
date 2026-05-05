@@ -1,12 +1,7 @@
 vim.g.mapleader = " ";
 
 -- Open file explorer
-vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeFocus)
--- Collapse all directories in file explorer
-vim.keymap.set("n", "<leader>cf", function()
-  local api = require("nvim-tree.api")
-  api.tree.collapse_all()
-end, { desc = "Collapse all except current file path" })
+vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 
 -- LSP
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
@@ -20,8 +15,6 @@ vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action
 -- Find files
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Telescope find git files' })
-vim.keymap.set('n', '<leader>b', ":Telescope buffers<CR>", { desc = 'Telescope find git files' })
 vim.keymap.set('n', '<leader>fw', function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
@@ -77,33 +70,20 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Open terminal and navigation out of terminal
+-- Open terminal
 local function open_terminal_rightmost()
-  -- Find nvim-tree window
-  local tree_win = nil
-  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_buf_get_option(buf, 'filetype') == 'NvimTree' then
-      tree_win = win
-      break
-    end
-  end
+  -- Open window bottom right
+  vim.cmd("botright 50vnew")
 
-  if tree_win then
-    vim.api.nvim_set_current_win(tree_win)
-    vim.cmd("rightbelow 50vnew")
-  else
-    vim.cmd("botright 50vnew")
-  end
+  -- Set width of the window
+  vim.cmd("vertical resize 80")
 
+  -- Open terminal in said window
   vim.cmd("terminal")
-  -- Force the width and make it fixed
-  vim.cmd("vertical resize 40")
-  --vim.wo.winfixwidth = true -- Prevent this window from being resized
+
+  -- Start insert
   vim.cmd("startinsert")
 end
-
-vim.keymap.set("n", "<leader>t", open_terminal_rightmost)
 
 vim.keymap.set("n", "<leader>t", open_terminal_rightmost)
 
@@ -115,11 +95,6 @@ vim.keymap.set('t', '<A-l>', [[<C-\><C-n><C-w>l]], { desc = "Move to right windo
 vim.keymap.set('t', '<A-n>', [[<C-\><C-n>]], { desc = "Unfocus" })
 
 -- Open floating terminal
-vim.keymap.set("n", "<A-i>", ":FloatermNew --height=0.6 --width=0.6 --wintype=float<CR>",
+vim.keymap.set("n", "<A-i>", ":FloatermNew --height=0.9 --width=0.6 --wintype=float<CR>",
   { desc = "Open floating terminal" })
 
--- Flutter
-vim.keymap.set("n", "<F5>", ":FlutterRun<CR>", { desc = "Flutter run", silent = true })
-vim.keymap.set("n", "<F6>", ":FlutterReload<CR>", { desc = "Flutter reload", silent = true })
-vim.keymap.set("n", "<F7>", ":FlutterRestart<CR>", { desc = "Flutter restart", silent = true })
-vim.keymap.set("n", "<F8>", ":FlutterQuit<CR>", { desc = "Flutter quit", silent = true })

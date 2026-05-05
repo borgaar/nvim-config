@@ -29,18 +29,8 @@ return require('packer').startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', run = function() vim.cmd('TSUpdate') end }
 
-  use { 'mbbill/undotree' }
-
-  use { 'lewis6991/satellite.nvim', config = function()
-    require("satellite").setup {}
-  end }
-
-  use { 'tpope/vim-fugitive' }
-
   -- LSPs
   use { 'neovim/nvim-lspconfig' }
-  use { 'williamboman/mason.nvim' }
-  use { 'williamboman/mason-lspconfig.nvim' }
 
   -- Diagnostics
   use { "folke/trouble.nvim", requries = "nvim-tree/nvim-web-devicons" }
@@ -57,13 +47,6 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'saadparwaiz1/cmp_luasnip' }
-
-  -- GitHub Copilot
-  use { 'github/copilot.vim' }
-
-  -- File explorer
-  use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
 
   -- Status line
   use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
@@ -72,15 +55,6 @@ return require('packer').startup(function(use)
   use { 'mrjones2014/smart-splits.nvim' }
 
   use { 'voldikss/vim-floaterm' }
-
-  use { 'Shatur/neovim-session-manager', requires = { 'nvim-lua/plenary.nvim' } }
-
-  use { 'nvim-flutter/flutter-tools.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-  }
 
   use {
     "windwp/nvim-autopairs",
@@ -91,21 +65,10 @@ return require('packer').startup(function(use)
   }
 
   use {
-    "stevearc/conform.nvim",
-    config = function()
-      require("conform").setup {}
-    end,
-  }
-
-  use {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
       require("nvim-surround").setup()
     end
   }
-
-  use { "windwp/nvim-ts-autotag", config = function()
-    require("nvim-ts-autotag").setup {}
-  end }
 end)

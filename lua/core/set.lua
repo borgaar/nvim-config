@@ -1,6 +1,5 @@
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- netrw
+vim.g.netrw_keepdir = 0
 
 -- Autoread
 vim.o.autoread = true;
@@ -21,9 +20,6 @@ vim.opt.backup = false;
 vim.opt.swapfile = false;
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir";
 vim.opt.undofile = true;
-
--- System clipboard
--- vim.opt.clipboard = "unnamedplus";
 
 -- search settings
 vim.opt.ignorecase = true;
