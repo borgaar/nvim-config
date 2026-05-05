@@ -1,0 +1,40 @@
+-- C
+vim.lsp.config(
+  'c',
+  {
+    cmd = {'clangd'},
+    filetypes = {'c', 'h'}
+  }
+)
+vim.lsp.enable('c')
+
+-- Rust
+vim.lsp.config(
+  'rust',
+  {
+    cmd = {'rust-analyzer'},
+    filetypes = {'rust'}
+  }
+)
+vim.lsp.enable('rust')
+
+-- Python
+vim.lsp.config(
+  'python',
+  {
+    cmd = {'pyright-langserver', '--stdio'},
+    filetypes = {'python'}
+  }
+)
+vim.lsp.enable('python')
+
+-- Typescript & Javascript
+vim.lsp.config(
+  'typescript',
+  {
+    cmd = {'typescript-language-server', '--stdio'},
+    filetypes = {'typescript', 'typescriptreact', 'javascript', 'javascriptreact'}
+  }
+)
+vim.lsp.enable('typescript')
+
