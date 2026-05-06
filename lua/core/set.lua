@@ -1,5 +1,5 @@
 -- netrw
-vim.g.netrw_keepdir = 0
+--vim.g.netrw_keepdir = 0
 
 -- Autoread
 vim.o.autoread = true;
