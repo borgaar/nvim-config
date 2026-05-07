@@ -38,3 +38,12 @@ vim.lsp.config(
 )
 vim.lsp.enable('typescript')
 
+-- Lua
+vim.lsp.config(
+  'lua',
+  {
+    cmd = {'lua-language-server'},
+    filetypes = {'lua'}
+  }
+)
+vim.lsp.enable('lua')
