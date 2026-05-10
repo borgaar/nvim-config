@@ -1,9 +1,12 @@
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- C
 vim.lsp.config(
   'c',
   {
     cmd = {'clangd'},
-    filetypes = {'c', 'h'}
+    filetypes = {'c', 'h'},
+    capabilities = capabilities
   }
 )
 vim.lsp.enable('c')
