@@ -46,7 +46,24 @@ vim.lsp.config(
   'lua',
   {
     cmd = {'lua-language-server'},
-    filetypes = {'lua'}
+    filetypes = {'lua'},
+    settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
   }
 )
 vim.lsp.enable('lua')
+
+-- Lean
+vim.lsp.config(
+  'lean',
+  {
+    cmd = {'lean', '--server'},
+    filetypes = {'lean'}
+  }
+)
+vim.lsp.enable('lean')
