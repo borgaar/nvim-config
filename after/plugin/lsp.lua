@@ -5,7 +5,7 @@ vim.lsp.config(
   'c',
   {
     cmd = {'clangd'},
-    filetypes = {'c', 'h'},
+    filetypes = {'c', 'cpp'},
     capabilities = capabilities
   }
 )
