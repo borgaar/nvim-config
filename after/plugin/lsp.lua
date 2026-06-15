@@ -41,6 +41,16 @@ vim.lsp.config(
 )
 vim.lsp.enable('typescript')
 
+-- TailwindCSS
+vim.lsp.config(
+  'tailwindcss',
+  {
+    cmd = {'tailwindcss-language-server', '--stdio'},
+    filetypes = {'typescript', 'typescriptreact', 'javascript', 'javascriptreact'}
+  }
+)
+vim.lsp.enable('tailwindcss')
+
 -- Lua
 vim.lsp.config(
   'lua',

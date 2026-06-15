@@ -44,6 +44,12 @@ require("lazy").setup({
       end,
     },
 
+    -- Formatting
+    {
+      'stevearc/conform.nvim',
+      opts = {},
+    },
+
     -- Diagnostics
     {
       "folke/trouble.nvim",
