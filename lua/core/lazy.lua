@@ -50,6 +50,15 @@ require("lazy").setup({
       opts = {},
     },
 
+    {
+        "seblyng/roslyn.nvim",
+        ---@module 'roslyn.config'
+        ---@type RoslynNvimConfig
+        opts = {
+            filewatching = roslyn
+        }
+    },
+
     -- Diagnostics
     {
       "folke/trouble.nvim",
