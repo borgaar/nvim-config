@@ -40,3 +40,18 @@ vim.opt.wrap = false
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "88"
+
+-- Automatically reload buffer from disk when disk is modified
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	callback = function()
+		if vim.fn.mode() == "n" then
+			vim.cmd("silent! checktime")
+		end
+	end,
+})
+vim.api.nvim_create_autocmd("FileChangedShell", {
+	callback = function()
+		vim.v.fcs_choice = "reload"
+	end,
+})
