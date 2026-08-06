@@ -55,3 +55,5 @@ vim.api.nvim_create_autocmd("FileChangedShell", {
 		vim.v.fcs_choice = "reload"
 	end,
 })
+
+vim.cmd.colorscheme("gruvbox")

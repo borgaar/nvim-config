@@ -25,14 +25,61 @@ require("lazy").setup({
 			dependencies = { "nvim-lua/plenary.nvim" },
 		},
 
-		-- Colorscheme
+		-- Treesitter
 		{
-			"EdenEast/nightfox.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			branch = "main",
+			lazy = false,
+			build = ":TSUpdate",
+			opts = {
+				install_dir = vim.fn.stdpath("data") .. "/site",
+			},
+		},
+
+		-- Colorschemes
+		{
+			"savq/melange-nvim",
+			lazy = false,
+			config = true,
+		},
+		{
+			"edeneast/nightfox.nvim",
+			lazy = false,
+			config = true,
+		},
+		{
+			"ellisonleao/gruvbox.nvim",
+			priority = 1000,
+			opts = {
+				italic = {
+					strings = false,
+					emphasis = false,
+					comments = true,
+					folds = false,
+				},
+			},
+		},
+		{
+			"folke/tokyonight.nvim",
+			lazy = false,
+			priority = 1000,
+			opts = {
+				styles = {
+					comments = { italic = false },
+					keywords = { italic = false },
+				},
+			},
+		},
+		{
+			"rebelot/kanagawa.nvim",
 			lazy = false,
 			priority = 1000,
 			config = function()
-				require("nightfox").setup({})
-				vim.cmd.colorscheme("carbonfox")
+				require("kanagawa").setup({
+					commentStyle = { italic = false },
+					keywordStyle = { italic = false },
+					statementStyle = { bold = true },
+				})
 			end,
 		},
 
@@ -67,7 +114,7 @@ require("lazy").setup({
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			opts = {
 				options = {
-					theme = "carbonfox",
+					theme = "gruvbox",
 				},
 			},
 		},

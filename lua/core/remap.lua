@@ -14,7 +14,9 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action
 
 -- Find files
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>ff", function()
+	builtin.find_files({ hidden = true })
+end, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>fw", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
