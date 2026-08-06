@@ -90,13 +90,6 @@ require("lazy").setup({
 			-- @type RoslynNvimConfig
 		},
 
-		-- Diagnostics
-		{
-			"folke/trouble.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			opts = {},
-		},
-
 		-- Completions
 		{
 			"hrsh7th/nvim-cmp",
