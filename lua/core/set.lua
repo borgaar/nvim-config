@@ -57,3 +57,12 @@ vim.api.nvim_create_autocmd("FileChangedShell", {
 })
 
 vim.cmd.colorscheme("gruvbox")
+
+vim.diagnostic.setqflist()
+
+-- Refresh setqflist on new diagnostics
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+	callback = function()
+		vim.diagnostic.setqflist({ open = false })
+	end,
+})

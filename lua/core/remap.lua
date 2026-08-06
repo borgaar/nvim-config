@@ -6,7 +6,9 @@ vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
+vim.keymap.set("n", "gr", function()
+	vim.lsp.buf.references(nil, { loclist = true })
+end, { desc = "Go to references" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Open documentation" })
 vim.keymap.set("n", "E", vim.diagnostic.open_float, { desc = "Open diagnostics" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
@@ -91,7 +93,7 @@ local function open_terminal_rightmost()
 	vim.cmd("botright 50vnew")
 
 	-- Set width of the window
-	vim.cmd("vertical resize 80")
+	vim.cmd("vertical resize 120")
 
 	-- Open terminal in said window
 	vim.cmd("terminal")

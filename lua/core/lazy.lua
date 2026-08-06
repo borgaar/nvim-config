@@ -38,11 +38,6 @@ require("lazy").setup({
 
 		-- Colorschemes
 		{
-			"savq/melange-nvim",
-			lazy = false,
-			config = true,
-		},
-		{
 			"edeneast/nightfox.nvim",
 			lazy = false,
 			config = true,
@@ -86,7 +81,7 @@ require("lazy").setup({
 		-- Formatting
 		{
 			"stevearc/conform.nvim",
-			opts = {},
+			config = true,
 		},
 
 		{
