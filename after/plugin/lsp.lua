@@ -8,16 +8,6 @@ vim.lsp.config("c", {
 })
 vim.lsp.enable("c")
 
--- C#
--- vim.lsp.config(
---   'csharp',
---   {
---     cmd = {'roslyn-language-server', '--stdio'},
---     filetypes = {'cs'},
---   }
--- )
--- vim.lsp.enable('csharp')
-
 -- Rust
 vim.lsp.config("rust", {
 	cmd = { "rust-analyzer" },
@@ -68,8 +58,16 @@ vim.lsp.config("lean", {
 })
 vim.lsp.enable("lean")
 
+-- XML
 vim.lsp.config("xml", {
 	cmd = { "lemminx" },
 	filetypes = { "xml" },
 })
 vim.lsp.enable("xml")
+
+-- JSON
+vim.lsp.config("json", {
+	cmd = { "jsonnet" },
+	filetype = { "json" },
+})
+vim.lsp.enable("json")
